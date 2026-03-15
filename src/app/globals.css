@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --accent: #10b981;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent: #34d399;
+  --border: #334155;
+}
+
+body {
+  @apply antialiased;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* 安全区，适配移动端底部导航 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
