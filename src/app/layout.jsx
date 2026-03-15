@@ -1,6 +1,7 @@
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { AppProvider } from '@/context/AppContext';
+import { SquareProvider } from '@/context/SquareContext';
 import BottomNav from '@/components/BottomNav';
 
 export const metadata = {
@@ -14,10 +15,12 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
         <ThemeProvider>
           <AppProvider>
-            <div className="mx-auto max-w-lg pb-20">
-              {children}
-            </div>
-            <BottomNav />
+            <SquareProvider>
+              <div className="mx-auto max-w-lg pb-20">
+                {children}
+              </div>
+              <BottomNav />
+            </SquareProvider>
           </AppProvider>
         </ThemeProvider>
       </body>

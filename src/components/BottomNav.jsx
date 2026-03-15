@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const items = [
   { href: '/', label: '规划', icon: '🗺️' },
+  { href: '/square', label: '广场', icon: '🌐' },
   { href: '/my-trips', label: '行程', icon: '📋' },
   { href: '/profile', label: '我的', icon: '👤' },
 ];

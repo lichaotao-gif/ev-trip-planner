@@ -170,3 +170,68 @@ export function getExpensesByTripId(tripId) {
   const trip = getTripById(tripId);
   return trip ? trip.expenses : [];
 }
+
+// —————— 广场：用户发布的行程 ——————
+export const mockSquarePosts = [
+  {
+    postId: 'sp1',
+    tripId: 't1',
+    author: { id: 'u2', nickname: '京沪线老司机', avatar: null },
+    publishedAt: '2025-03-10T10:00:00Z',
+    likeCount: 128,
+    collectCount: 56,
+    commentCount: 12,
+    companionCount: 5,
+    likedByUserIds: ['u1'],
+    collectedByUserIds: [],
+    comments: [
+      { id: 'c1', userId: 'u3', nickname: '电车小白', content: '充电站安排很清晰，收藏了！', createdAt: '2025-03-11T09:00:00Z' },
+      { id: 'c2', userId: 'u4', nickname: '江浙沪车友', content: '同路线走过，济南那段可以多留半天', createdAt: '2025-03-12T14:00:00Z' },
+    ],
+    companionRequests: [
+      { id: 'cr1', userId: 'u5', nickname: 'Tesla Model 3 车主', message: '4 月初出发，有同行的吗', createdAt: '2025-03-13T08:00:00Z' },
+    ],
+  },
+  {
+    postId: 'sp2',
+    tripId: 't2',
+    author: { id: 'u3', nickname: '周末玩家', avatar: null },
+    publishedAt: '2025-03-05T16:00:00Z',
+    likeCount: 89,
+    collectCount: 42,
+    commentCount: 8,
+    companionCount: 3,
+    likedByUserIds: [],
+    collectedByUserIds: ['u1'],
+    comments: [
+      { id: 'c3', userId: 'u1', nickname: 'EV 旅行者', content: '西湖国宾馆体验如何？', createdAt: '2025-03-06T11:00:00Z' },
+    ],
+    companionRequests: [],
+  },
+  {
+    postId: 'sp3',
+    tripId: 't1',
+    author: { id: 'u4', nickname: '长途爱好者', avatar: null },
+    publishedAt: '2025-03-01T12:00:00Z',
+    likeCount: 256,
+    collectCount: 120,
+    commentCount: 25,
+    companionCount: 18,
+    likedByUserIds: [],
+    collectedByUserIds: [],
+    comments: [],
+    companionRequests: [
+      { id: 'cr2', userId: 'u6', nickname: 'Model Y 车主', message: '清明假期求搭子', createdAt: '2025-03-02T10:00:00Z' },
+    ],
+  },
+];
+
+export function getSquarePostById(postId) {
+  return mockSquarePosts.find((p) => p.postId === postId) || null;
+}
+
+export function getSquarePosts() {
+  return [...mockSquarePosts].sort(
+    (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+  );
+}

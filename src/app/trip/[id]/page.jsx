@@ -6,11 +6,13 @@ import Header from '@/components/Header';
 import TripSummaryCard from '@/components/TripSummaryCard';
 import DayItineraryCard from '@/components/DayItineraryCard';
 import { useApp } from '@/context/AppContext';
+import { useSquare } from '@/context/SquareContext';
 
 export default function TripDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { getTripById, isSaved, saveTrip, unsaveTrip } = useApp();
+  const { publishToSquare } = useSquare();
   const trip = getTripById(params.id);
 
   if (!trip) {
@@ -58,6 +60,17 @@ export default function TripDetailPage() {
             className="rounded-button border border-slate-200 px-4 py-2.5 text-sm text-slate-500 dark:border-slate-600 dark:text-slate-400"
           >
             编辑
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const postId = publishToSquare(trip.tripId);
+              if (postId) router.push(`/square/${postId}`);
+              else alert('请先登录后再发布到广场');
+            }}
+            className="rounded-button border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            🌐 发布到广场
           </button>
           <button
             type="button"
